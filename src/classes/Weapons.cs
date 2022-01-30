@@ -15,6 +15,7 @@ public class Weapons : Base
         this.Weapon = (EnumWeapons)Weapon;
     }
 
+
     internal static void ChooseWeapon(int Weapon)
     {
         Weapons character = new(Weapon);

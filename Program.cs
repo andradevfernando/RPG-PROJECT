@@ -45,6 +45,7 @@ class Program
                 //     Console.Clear();
                 //     break;
 
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }

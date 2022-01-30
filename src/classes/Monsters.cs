@@ -20,6 +20,7 @@ public class Monsters : Base
     {
         Monsters character = new(Monster);
         WriteLine(character.ToString());
+
     }
     public override string ToString()
     {
