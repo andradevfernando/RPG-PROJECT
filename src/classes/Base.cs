@@ -1,14 +1,15 @@
 namespace PROJETO_RPG.src.classes;
 using static System.Console;
-public class Base
+using PROJETO_RPG.src.classes.weapons;
+public abstract class Base
 {
 
-    public static void List(string[] Weapon)
+    public static void List(string[] list)
     {
         WriteLine(Environment.NewLine);
-        for (int i = 0; i < Weapon.Length; i++)
+        for (int i = 0; i < list.Length; i++)
         {
-            WriteLine((i + 1) + "-" + Weapon[i].ToString().Replace("_", " "));
+            WriteLine((i + 1) + "-" + list[i].ToString().Replace("_", " "));
         }
         return;
     }

@@ -2,17 +2,17 @@
 namespace PROJETO_RPG;
 using static System.Console;
 using PROJETO_RPG.src.classes;
+using PROJETO_RPG.src.classes.weapons;
 
 class Program
 {
 
+    public string character;
+    public string weapon;
+    public string monster;
     static void Main(string[] args)
     {
         Choose();
-
-
-        // string? nome = ReadLine();
-        // int id = int.Parse(ReadLine());
     }
     static void Choose()
     {
@@ -25,15 +25,18 @@ class Program
             {
                 case "1":
                     WriteLine($"{Environment.NewLine}Choose your name:");
-                    Character.Creation(ReadLine());
+                    string character = Character.Creation(ReadLine());
+                    WriteLine(character);
                     break;
                 case "2":
                     WriteLine($"{Environment.NewLine}Choose your weapon:");
-                    Weapons.ChooseWeapon(int.Parse(ReadLine()));
+                    string weapon = Weapons.NameWeapon(int.Parse(ReadLine()));
+                    WriteLine(weapon);
                     break;
                 case "3":
                     WriteLine($"{Environment.NewLine}Choose monster:");
-                    Monsters.ChooseMonster(int.Parse(ReadLine()));
+                    string monster = Monsters.NameMonster(int.Parse(ReadLine()));
+                    WriteLine(monster);
                     break;
                 case "4":
                     Monsters.List(Monsters.monster);
@@ -41,9 +44,15 @@ class Program
                 case "5":
                     Weapons.List(Weapons.weapon);
                     break;
-                // case "6":
-                //     Console.Clear();
-                //     break;
+                case "6":
+                    Console.Clear();
+                    break;
+                case "7":
+                    Combat combat = new();
+                    weapon = "1";
+                    monster = "Aknosom";
+                    combat.Battle(weapon, monster);
+                    break;
 
 
                 default:

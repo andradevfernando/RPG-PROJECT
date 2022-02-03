@@ -1,8 +1,14 @@
 namespace PROJETO_RPG.src.classes;
 using static System.Console;
+using PROJETO_RPG.src.classes.weapons;
+using PROJETO_RPG.src.classes.monsters;
 public class Monsters : Base
 {
     public EnumMonsters Monster;
+    public Monsters()
+    {
+
+    }
     public Monsters(int Monster)
     {
         this.Monster = (EnumMonsters)Monster;
@@ -16,11 +22,35 @@ public class Monsters : Base
     }
     public static string[] monster = Enum.GetNames(typeof(EnumMonsters));
 
-    internal static void ChooseMonster(int Monster)
+    internal static string NameMonster(int Monster)
     {
         Monsters character = new(Monster);
-        WriteLine(character.ToString());
+        character.Monster = (EnumMonsters)Monster;
 
+        var path = Path.Combine(Environment.CurrentDirectory, "texts");
+        var di = new DirectoryInfo(path);
+        if (!di.Exists)
+        {
+            di.Create();
+        }
+        path = Path.Combine(path, "monster.csv");
+        using var sw = new StreamWriter(path, false);
+        var linha = $"{character.Monster}";
+        sw.WriteLine(linha);
+        sw.Close();
+
+        return character.ToString();
+    }
+    public void ChooseMonster(string monster)
+    {
+        switch (monster)
+        {
+            case "Aknosom":
+                Aknosom aknosom = new();
+                aknosom.SetHealth();
+                aknosom.ChooseMoveSet();
+                break;
+        }
     }
     public override string ToString()
     {
