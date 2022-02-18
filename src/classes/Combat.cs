@@ -1,22 +1,21 @@
 namespace PROJETO_RPG.src.classes;
 using PROJETO_RPG.src.classes.weapons;
 
-public class Combat : Weapons
+public class Combat : Base
 {
-    public int monsterHealth;
-    public int tick;
-    public int playerHealth = 100;
-    public int monsterDamage;
+
+    public Combat()
+    {
+    }
 
     public virtual void TickRate(int tickrate)
     {
-        tick += -tickrate;
-        return;
+        Character.character.Tick += -tickrate;
     }
     public void Roll()
     {
-        tick += -1;
-        if (tick == 0)
+        TickRate(1);
+        if (Character.character.Tick == 0)
         {
             Console.WriteLine("Dodge executed succesfully");
         }
@@ -25,101 +24,40 @@ public class Combat : Weapons
             Console.WriteLine("Rolled in the ground");
         }
     }
-    public virtual void MonsterHealth(int monsterHealth)
+    public void MonsterHealth(int monsterHealth)
     {
-        this.monsterHealth += -monsterHealth;
+        Monsters.monsters.Health += -monsterHealth;
         return;
     }
-    public virtual void MoveSet1(int tick, int DmgMin, int DmgMax)
+    public void MoveSet(int tick, int DmgMin, int DmgMax)
     {
         TickRate(tick);
         Random random = new();
-        if (this.tick > 0)
+        if (Character.character.Tick > 0)
         {
-            monsterHealth += -random.Next(DmgMin, DmgMax);
+            Monsters.monsters.Health += -random.Next(DmgMin, DmgMax);
         }
         else
         {
-            playerHealth += -monsterDamage;
+            Character.character.Health += -Monsters.monsters.Damage;
         }
         return;
     }
-    public virtual void MoveSet2(int tick, int DmgMin, int DmgMax)
+    public void Battle(string Weapon, string Monster)
     {
-        TickRate(tick);
-        Random random = new();
-        if (this.tick > 0)
+        Monsters.ChooseMonster(Monster);
+        while (Monsters.monsters.Health > 0)
         {
-            monsterHealth += -random.Next(DmgMin, DmgMax);
-        }
-        else
-        {
-            playerHealth += -monsterDamage;
-        }
-        return;
-    }
-    public virtual void MoveSet3(int tick, int DmgMin, int DmgMax)
-    {
-        TickRate(tick);
-        Random random = new();
-        if (this.tick > 0)
-        {
-            monsterHealth += -random.Next(DmgMin, DmgMax);
-        }
-        else
-        {
-            playerHealth += -monsterDamage;
-        }
-        return;
-    }
-    public virtual void MoveSet4(int tick, int DmgMin, int DmgMax)
-    {
-        TickRate(tick);
-        Random random = new();
-        if (this.tick > 0)
-        {
-            monsterHealth += -random.Next(DmgMin, DmgMax);
-        }
-        else
-        {
-            playerHealth += -monsterDamage;
-        }
-        return;
-    }
-    public virtual void SpecialMoveSet(int tick, int DmgMin, int DmgMax)
-    {
-        TickRate(tick);
-        Random random = new();
-        if (this.tick > 0)
-        {
-            monsterHealth += -random.Next(DmgMin, DmgMax);
-        }
-        else
-        {
-            playerHealth += -monsterDamage;
-        }
-        return;
-    }
-
-    public virtual void Battle(string Weapon, string Monster)
-    {
-        Weapons weapon = new();
-        Monsters monster = new();
-
-        monster.ChooseMonster(Monster);
-
-        while (monsterHealth > 0)
-        {
-            while (this.tick > 0)
+            while (Character.character.Tick > 0)
             {
-                weapon.ChooseWeapon(Weapon);
+                Weapons.ChooseWeapon(Weapon);
             }
-            if (playerHealth <= 0)
+            if (Character.character.Health <= 0)
             {
                 Console.WriteLine("The monster has defeated you");
                 return;
             }
-            if (monsterHealth <= 0)
+            if (Monsters.monsters.Health <= 0)
             {
                 Console.WriteLine("You defeated the monster!");
                 return;

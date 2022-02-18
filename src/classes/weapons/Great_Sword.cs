@@ -11,19 +11,19 @@ public class Great_Sword : Combat
         switch (attack)
         {
             case "1":
-                MoveSet1(1, 30, 40);
+                MoveSet(1, 30, 40);
                 break;
             case "2":
-                MoveSet2(2, 40, 50);
+                MoveSet(2, 40, 50);
                 break;
             case "3":
-                MoveSet3(3, 60, 70);
+                MoveSet(3, 60, 70);
                 break;
             case "4":
-                MoveSet4(4, 80, 100);
+                MoveSet(4, 80, 100);
                 break;
             case "S":
-                SpecialMoveSet(5, 100, 150);
+                MoveSet(5, 100, 150);
                 break;
             case "R":
                 Roll();

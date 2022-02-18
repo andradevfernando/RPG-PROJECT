@@ -6,10 +6,6 @@ using PROJETO_RPG.src.classes.weapons;
 
 class Program
 {
-
-    public string character;
-    public string weapon;
-    public string monster;
     static void Main(string[] args)
     {
         Choose();
@@ -25,33 +21,31 @@ class Program
             {
                 case "1":
                     WriteLine($"{Environment.NewLine}Choose your name:");
-                    string character = Character.Creation(ReadLine());
-                    WriteLine(character);
+                    Character.character = new(ReadLine());
+                    WriteLine($"{Environment.NewLine}Your name is: {Environment.NewLine}{Character.character.Name}");
                     break;
                 case "2":
                     WriteLine($"{Environment.NewLine}Choose your weapon:");
-                    string weapon = Weapons.NameWeapon(int.Parse(ReadLine()));
-                    WriteLine(weapon);
+                    Weapons.weapons.Name = Weapons.ChooseWeapon(int.Parse(ReadLine()));
+                    WriteLine(Monsters.monsters.Name);
                     break;
                 case "3":
                     WriteLine($"{Environment.NewLine}Choose monster:");
-                    string monster = Monsters.NameMonster(int.Parse(ReadLine()));
-                    WriteLine(monster);
+                    Monsters.monsters.Name = Monsters.NameMonster(int.Parse(ReadLine()));
+                    WriteLine(Monsters.monsters.Name);
                     break;
                 case "4":
-                    Monsters.List(Monsters.monster);
+                    Monsters.List();
+
                     break;
                 case "5":
-                    Weapons.List(Weapons.weapon);
+                    Weapons.List();
                     break;
                 case "6":
                     Console.Clear();
                     break;
                 case "7":
                     Combat combat = new();
-                    weapon = "1";
-                    monster = "Aknosom";
-                    combat.Battle(weapon, monster);
                     break;
 
 

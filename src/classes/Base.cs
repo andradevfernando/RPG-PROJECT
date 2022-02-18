@@ -3,6 +3,10 @@ using static System.Console;
 using PROJETO_RPG.src.classes.weapons;
 public abstract class Base
 {
+    public string Name;
+    public int Health;
+    public int Tick;
+    public int Damage;
 
     public static void List(string[] list)
     {

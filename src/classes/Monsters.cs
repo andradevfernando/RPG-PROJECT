@@ -5,9 +5,12 @@ using PROJETO_RPG.src.classes.monsters;
 public class Monsters : Base
 {
     public EnumMonsters Monster;
+    public static Monsters monsters = new();
     public Monsters()
     {
-
+        this.Name = " ";
+        this.Health = 0;
+        this.Damage = 0;
     }
     public Monsters(int Monster)
     {
@@ -27,29 +30,23 @@ public class Monsters : Base
         Monsters character = new(Monster);
         character.Monster = (EnumMonsters)Monster;
 
-        var path = Path.Combine(Environment.CurrentDirectory, "texts");
-        var di = new DirectoryInfo(path);
-        if (!di.Exists)
-        {
-            di.Create();
-        }
-        path = Path.Combine(path, "monster.csv");
-        using var sw = new StreamWriter(path, false);
-        var linha = $"{character.Monster}";
-        sw.WriteLine(linha);
-        sw.Close();
-
         return character.ToString();
     }
-    public void ChooseMonster(string monster)
+    public static void ChooseMonster(string monster)
     {
+        Character.character.Tick = 0;
         switch (monster)
         {
             case "Aknosom":
-                Aknosom aknosom = new();
-                aknosom.SetHealth();
-                aknosom.ChooseMoveSet();
+                Aknosom.aknosom.ChooseMoveSet();
                 break;
+        }
+    }
+    public static void List()
+    {
+        foreach (EnumMonsters monster in (EnumMonsters[])Enum.GetValues(typeof(EnumMonsters)))
+        {
+            Console.WriteLine(monster.ToString().Replace("_", " "));
         }
     }
     public override string ToString()

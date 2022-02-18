@@ -7,33 +7,16 @@ using System.Linq;
 using System.Text;
 public class Character : Base
 {
-    public string Name;
-    public Character(string Name)
+    public static Character character = new();
+    public Character()
     {
-        this.Name = Name;
-    }
-    public static string Creation(string Name)
-    {
-        Character character = new(Name);
-        character.Name = Name;
 
-        var path = Path.Combine(Environment.CurrentDirectory, "texts");
-        var di = new DirectoryInfo(path);
-        if (!di.Exists)
-        {
-            di.Create();
-        }
-        path = Path.Combine(path, "character.csv");
-        using var sw = new StreamWriter(path, false);
-        var linha = $"{character.Name}";
-        sw.WriteLine(linha);
-        sw.Close();
-
-        return character.ToString();
     }
-    public override string ToString()
+    public Character(string name)
     {
-        return $"{Environment.NewLine}Name: {this.Name}";
+        this.Name = name;
+        this.Health = 100;
+        this.Tick = 0;
     }
 
 }
