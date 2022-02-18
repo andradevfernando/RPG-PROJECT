@@ -24,7 +24,7 @@ public class Combat : Base
             Console.WriteLine("Rolled in the ground");
         }
     }
-    public void MonsterHealth(int monsterHealth)
+    public static void MonsterHealth(int monsterHealth)
     {
         Monsters.monsters.Health += -monsterHealth;
         return;
@@ -35,21 +35,29 @@ public class Combat : Base
         Random random = new();
         if (Character.character.Tick > 0)
         {
-            Monsters.monsters.Health += -random.Next(DmgMin, DmgMax);
+            int damage = random.Next(DmgMin, DmgMax);
+            Monsters.monsters.Health += -damage;
+            Console.WriteLine($"Did {damage} damage to {Monsters.monsters.Name}");
+            Console.WriteLine($"Monster health remaining: {Monsters.monsters.Health}");
         }
         else
         {
             Character.character.Health += -Monsters.monsters.Damage;
+            Console.WriteLine($"{Character.character.Name} received {Monsters.monsters.Damage} damage by {Monsters.monsters.Name}");
+            Console.WriteLine($"{Character.character.Name} health remaining: {Character.character.Health}");
         }
         return;
     }
-    public void Battle(string Weapon, string Monster)
+    public static void Battle(string Weapon, string Monster)
     {
-        Monsters.ChooseMonster(Monster);
+        Monsters.ChooseMonsterHealth(Monster);
+
         while (Monsters.monsters.Health > 0)
         {
+            Monsters.ChooseMonster(Monster);
             while (Character.character.Tick > 0)
             {
+                Console.WriteLine($"Ticks remaining: {Character.character.Tick}");
                 Weapons.ChooseWeapon(Weapon);
             }
             if (Character.character.Health <= 0)

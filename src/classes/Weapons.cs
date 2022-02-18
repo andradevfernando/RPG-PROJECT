@@ -31,16 +31,15 @@ public class Weapons : Base
     }
     public override string ToString()
     {
-        return $"{Environment.NewLine}Weapon: {Enum.GetNames(typeof(EnumWeapons)).ToString().Replace("_", " ")}";
+        return $"{this.Weapon.ToString().Replace("_", " ")}";
     }
 
     public static void ChooseWeapon(string weapon)
     {
         switch (weapon)
         {
-            case "Great_Sword":
-                Great_Sword GS = new();
-                GS.Attack();
+            case "Great Sword":
+                Great_Sword.GS.Attack();
                 break;
         }
     }

@@ -27,7 +27,7 @@ class Program
                 case "2":
                     WriteLine($"{Environment.NewLine}Choose your weapon:");
                     Weapons.weapons.Name = Weapons.ChooseWeapon(int.Parse(ReadLine()));
-                    WriteLine(Monsters.monsters.Name);
+                    WriteLine(Weapons.weapons.Name);
                     break;
                 case "3":
                     WriteLine($"{Environment.NewLine}Choose monster:");
@@ -36,7 +36,6 @@ class Program
                     break;
                 case "4":
                     Monsters.List();
-
                     break;
                 case "5":
                     Weapons.List();
@@ -45,9 +44,8 @@ class Program
                     Console.Clear();
                     break;
                 case "7":
-                    Combat combat = new();
+                    Combat.Battle(Weapons.weapons.Name, Monsters.monsters.Name);
                     break;
-
 
                 default:
                     throw new ArgumentOutOfRangeException();

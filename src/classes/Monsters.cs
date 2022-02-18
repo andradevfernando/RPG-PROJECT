@@ -42,6 +42,15 @@ public class Monsters : Base
                 break;
         }
     }
+    public static void ChooseMonsterHealth(string monster)
+    {
+        switch (monster)
+        {
+            case "Aknosom":
+                monsters.Health = Aknosom.aknosom.Health;
+                break;
+        }
+    }
     public static void List()
     {
         foreach (EnumMonsters monster in (EnumMonsters[])Enum.GetValues(typeof(EnumMonsters)))
@@ -51,6 +60,6 @@ public class Monsters : Base
     }
     public override string ToString()
     {
-        return $"{Environment.NewLine}Monster: {this.Monster.ToString().Replace("_", " ")}";
+        return $"{this.Monster.ToString().Replace("_", " ")}";
     }
 }

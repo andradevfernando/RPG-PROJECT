@@ -3,7 +3,7 @@ using static System.Console;
 public class Great_Sword : Combat
 {
 
-
+    public static Great_Sword GS = new();
     public void Attack()
     {
         Menu();
@@ -29,7 +29,9 @@ public class Great_Sword : Combat
                 Roll();
                 break;
             case "X":
-                return;
+                Character.character.Tick = 0;
+                Character.character.Health = 0;
+                break;
         }
     }
     static void Menu()
@@ -41,6 +43,7 @@ Choose your move
 3- Wide Sweep
 4- Rising Slash
 S- Charged Slash
+R- Roll
 X- Forfeit");
     }
 }
